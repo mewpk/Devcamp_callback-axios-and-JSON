@@ -7,41 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
-    <style>
-        th {
-            border: solid 5px black;
-            padding-left: 20px;
-            padding-right: 20px;
-        }
-        #con{
-            border: solid 5px black;
-            padding-left: 20px;
-            padding-right: 20px;
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-    <center>
-        <table id="con">
-            <tr>
-                <div class="bar">
-                    <th>Category</th>
-                    <th>cases</th>
-                    <th>todayCases</th>
-                    <th>deaths</th>
-                    <th>todayDeaths</th>
-                    <th>recovered</th>
-                    <th>todayRecovered</th>
-                    <th>active</th>
-                    <th>critical</th>
-                </div>
-            </tr>
-        </table>
-
-    </center>
     <script>
         const covidData = {
             "Thailand": {
@@ -66,7 +31,7 @@
             }
 
         }
-        function getUser(url1, url2, callback) {
+        function getUserth(url1, url2, callback) {
             axios.get(`${url1}`).then(function (response) {
                 let res = response.data
                 covidData.Thailand.cases = res.cases
@@ -89,35 +54,50 @@
                 covidData.World.active = res.active
                 covidData.World.critical = res.critical
             })
-            callback()
-
+            // `<tr><td>Thailand</td><td>${covidData.Thailand.cases}</td><td>${covidData.Thailand.todayCases}</td><td>${covidData.Thailand.deaths}</td>
+            //     <td>${covidData.Thailand.todayDeaths}</td>
+            //         <td>${covidData.Thailand.recovered}</td>
+            //         <td>${covidData.Thailand.todayRecovered}</td>
+            //         <td>${covidData.Thailand.active}</td>
+            //         <td>${covidData.Thailand.critical}</td>
+            //         </tr>`
+            
         }
-        function show() {
-            console.log(covidData)
-            document.getElementById("con").innerHTML += `<tr><td>Thailand</td>
-            <td>${covidData.Thailand.cases}</td>
-            <td>${covidData.Thailand.todayCases}</td>
-            <td>${covidData.Thailand.deaths}</td>
-            <td>${covidData.Thailand.todayDeaths}</td>
-            <td>${covidData.Thailand.recovered}</td>
-            <td>${covidData.Thailand.todayRecovered}</td>
-            <td>${covidData.Thailand.active}</td>
-            <td>${covidData.Thailand.critical}</td>
-            </tr>`
-            document.getElementById("con").innerHTML += `<tr><td>World</td>
-            <td>${covidData.World.cases}</td>
-            <td>${covidData.World.todayCases}</td>
-            <td>${covidData.World.deaths}</td>
-            <td>${covidData.World.todayDeaths}</td>
-            <td>${covidData.World.recovered}</td>
-            <td>${covidData.World.todayRecovered}</td>
-            <td>${covidData.World.active}</td>
-            <td>${covidData.World.critical}</td>
-            </tr>`
-        }
-        getUser("https://corona.lmao.ninja/v2/countries/thailand,show", "https://corona.lmao.ninja/v2/all", show)
+        // function show() {
 
+        // }
+        getUserth("https://corona.lmao.ninja/v2/countries/thailand,show", "https://corona.lmao.ninja/v2/all")
+        document.getElementById("one").innerHTML += "hello"
     </script>
+    <style>
+        th {
+            border: solid 5px black;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <h1>Hello ReqRes users!</h1>
+        <table id="one">
+                <tr>
+                    <div class="bar">
+                        <th>Category</th>
+                        <th>cases</th>
+                        <th>todayCases</th>
+                        <th>deaths</th>
+                        <th>todayDeaths</th>
+                        <th>recovered</th>
+                        <th>todayRecovered</th>
+                        <th>active</th>
+                        <th>critical</th>
+                    </div>
+                </tr>
+            </table>
+
+    </center>
 </body>
 
 </html>
