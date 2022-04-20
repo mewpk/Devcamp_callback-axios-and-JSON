@@ -27,6 +27,11 @@
                 let aUser = response.data.data
                 let gen = []
                 let ages= []
+                let aLastName = []
+                for (let index = 0; index < aUser.length; index++) {
+                    aLastName[index] = aUser[index].last_name
+                    
+                }
                 for (let index = 0; index < aUser.length; index++) {
                     axios.get(`https://api.genderize.io?name=${aUser[index].first_name}`).then(function (response) {
                         let genderize = response.data.gender
@@ -44,6 +49,7 @@
                 }
                 setTimeout(() => {
                         callback(aUser, gen, ages)
+                        console.log(aLastName) 
                     }, 2000);
             })
     
