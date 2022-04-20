@@ -43,32 +43,20 @@
 
     </center>
     <script>
-        const covidData = {
+        
+        function getUser(url1, url2, callback) {
+            const covidData = {
             "Thailand": {
-                "cases": 4063844,
-                "todayCases": 16891,
-                "deaths": 27138,
-                "todayDeaths": 129,
-                "recovered": 3839360,
-                "todayRecovered": 24927,
-                "active": 197346,
-                "critical": 1496
+                
             },
             "World": {
-                "cases": 505383402,
-                "todayCases": 312162,
-                "deaths": 6225427,
-                "todayDeaths": 892,
-                "recovered": 457262982,
-                "todayRecovered": 746464,
-                "active": 41894993,
-                "critical": 41939
+               
             }
 
         }
-        function getUser(url1, url2, callback) {
             axios.get(`${url1}`).then(function (response) {
                 let res = response.data
+                console.log(res)
                 covidData.Thailand.cases = res.cases
                 covidData.Thailand.todayCases = res.todayCases
                 covidData.Thailand.deaths = res.deaths
@@ -89,11 +77,13 @@
                 covidData.World.active = res.active
                 covidData.World.critical = res.critical
             })
-            callback()
+            setTimeout(() => {
+                callback(covidData)
+            }, 2000);
+            
 
         }
-        function show() {
-            console.log(covidData)
+        function show(covidData) {
             document.getElementById("con").innerHTML += `<tr><td>Thailand</td>
             <td>${covidData.Thailand.cases}</td>
             <td>${covidData.Thailand.todayCases}</td>
